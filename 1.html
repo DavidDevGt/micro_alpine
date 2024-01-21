@@ -12,9 +12,9 @@
 
 
     <div x-data="{ open: false }">
-        <button>Menu</button>
+        <button x-on:click="open = !open">Menu</button>
 
-        <nav x-show="open">
+        <nav x-show="open" x-on:click.away="open = false">
             <ul>
                 <li>Item 1</li>
                 <li>Item 2</li>
