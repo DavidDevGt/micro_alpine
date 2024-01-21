@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+</head>
+<body>
+
+
+
+    <div x-data="data()" x-init="start()">
+        <button x-on:click="isOpen()">Menu</button>
+
+        <nav x-show="open" x-on:click.away="close()">
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        function data() {
+            return {
+                open: false,
+                start() {
+                    this.open = false
+                },
+                isOpen() {
+                    this.open = !open
+                },
+                close() {
+                    this.open = false
+                }
+            }
+        }
+    </script>
+</body>
+</html>
