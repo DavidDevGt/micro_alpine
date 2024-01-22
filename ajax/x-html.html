@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch API, Crear Tabla Dinámica con XHTML y PHP</title>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div
+      x-data="{ pedidos: [] }"
+      x-init="fetch('http://localhost:3000/pedidos').then(response => response.json()).then(data => pedidos = data)"
+    >
+      <table
+        class="table-fixed w-full text-left border-collapse border border-gray-400"
+      >
+        <thead>
+          <tr>
+            <th class="border border-gray-300 px-4 py-2">Producto</th>
+            <th class="border border-gray-300 px-4 py-2">Cantidad</th>
+            <th class="border border-gray-300 px-4 py-2">Cliente</th>
+            <th class="border border-gray-300 px-4 py-2">Dirección</th>
+            <th class="border border-gray-300 px-4 py-2">NIT</th>
+            <th class="border border-gray-300 px-4 py-2">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+            <template x-for="pedido in pedidos" :key=""pedido.NIT>
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2" x-text="pedido.producto"></td>
+                    <td class="border border-gray-300 px-4 py-2" x-text="pedido.cantidad"></td>
+                    <td class="border border-gray-300 px-4 py-2" x-text="pedido.cliente"></td>
+                    <td class="border border-gray-300 px-4 py-2" x-text="pedido.direccion"></td>
+                    <td class="border border-gray-300 px-4 py-2" x-text="pedido.NIT"></td>
+                    <td class="border border-gray-300 px-4 py-2" x-text="parseFloat(pedido.total)"></td>
+                </tr>
+            </template>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

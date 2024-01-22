@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
+    ></script>
+    <style>
+      .pestanas-contenedor {
+        margin: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      .pestanas button {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        padding: 10px 20px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .pestanas button.activa {
+        background-color: white;
+        border-bottom: none;
+        border-top: 2px solid blue;
+      }
+
+      .contenido-pestana {
+        border: 1px solid #ddd;
+        padding: 20px;
+        display: none;
+      }
+
+      .contenido-pestana[x-show="true"] {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div x-data="{ pestanaActiva: 'pestana1' }">
+      <div class="pestanas">
+        <button
+          :class="{ 'activa': pestanaActiva === 'pestana1' }"
+          @click="pestanaActiva = 'pestana1'"
+        >
+          Pestaña 1
+        </button>
+        <button
+          :class="{ 'activa': pestanaActiva === 'pestana2' }"
+          @click="pestanaActiva = 'pestana2'"
+        >
+          Pestaña 2
+        </button>
+        <button
+          :class="{ 'activa': pestanaActiva === 'pestana3' }"
+          @click="pestanaActiva = 'pestana3'"
+        >
+          Pestaña 3
+        </button>
+      </div>
+      <div x-show="pestanaActiva === 'pestana1'">
+        <br />
+        <p>Contenido de la Pestaña 1</p>
+      </div>
+      <div x-show="pestanaActiva === 'pestana2'">
+        <br />
+        <p>Contenido de la Pestaña 2</p>
+      </div>
+      <div x-show="pestanaActiva === 'pestana3'">
+        <br />
+        <p>Contenido de la Pestaña 3</p>
+      </div>
+    </div>
+
+    <script>
+      function pestanasComponente() {
+        return {
+          pestanaActiva: "pestana1",
+          activarPestana(pestana) {
+            this.pestanaActiva = pestana;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
